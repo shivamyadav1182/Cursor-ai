@@ -108,7 +108,47 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Touch controls
+    function handleTouchStart(event) {
+        const touch = event.touches[0];
+        const canvasRect = snakeCanvas.getBoundingClientRect();
+        const touchX = touch.clientX - canvasRect.left;
+        const touchY = touch.clientY - canvasRect.top;
+
+        if (touchX < canvasRect.width / 2) {
+            if (touchY < canvasRect.height / 2) {
+                // Top left
+                if (dy === 0) {
+                    dx = -1;
+                    dy = 0;
+                }
+            } else {
+                // Bottom left
+                if (dy === 0) {
+                    dx = -1;
+                    dy = 0;
+                }
+            }
+        } else {
+            if (touchY < canvasRect.height / 2) {
+                // Top right
+                if (dy === 0) {
+                    dx = 1;
+                    dy = 0;
+                }
+            } else {
+                // Bottom right
+                if (dy === 0) {
+                    dx = 1;
+                    dy = 0;
+                }
+            }
+        }
+    }
+
+    // Add event listeners
     document.addEventListener('keydown', changeDirection);
+    snakeCanvas.addEventListener('touchstart', handleTouchStart);
 
     // Uno game variables and functions
     const colors = ['red', 'blue', 'green', 'yellow'];
