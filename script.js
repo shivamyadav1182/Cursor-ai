@@ -33,15 +33,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function drawSnakeGame() {
-        snakeCtx.fillStyle = 'white';
+        snakeCtx.fillStyle = 'black'; // Background color
         snakeCtx.fillRect(0, 0, snakeCanvas.width, snakeCanvas.height);
 
-        snakeCtx.fillStyle = 'green';
+        snakeCtx.fillStyle = 'blue'; // Snake color
         snake.forEach(segment => {
             snakeCtx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize - 1, gridSize - 1);
         });
 
-        snakeCtx.fillStyle = 'red';
+        snakeCtx.fillStyle = 'yellow'; // Food color
         snakeCtx.fillRect(food.x * gridSize, food.y * gridSize, gridSize - 1, gridSize - 1);
 
         snakeScoreElement.textContent = score;
