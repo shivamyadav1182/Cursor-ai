@@ -78,77 +78,35 @@ document.addEventListener('DOMContentLoaded', function() {
         initSnakeGame();
     }
 
-    function changeDirection(event) {
-        const LEFT_KEY = 37;
-        const RIGHT_KEY = 39;
-        const UP_KEY = 38;
-        const DOWN_KEY = 40;
-
-        const keyPressed = event.keyCode;
+    function changeDirection(newDx, newDy) {
         const goingUp = dy === -1;
         const goingDown = dy === 1;
         const goingRight = dx === 1;
         const goingLeft = dx === -1;
 
-        if (keyPressed === LEFT_KEY && !goingRight) {
+        if (newDx === -1 && !goingRight) {
             dx = -1;
             dy = 0;
         }
-        if (keyPressed === UP_KEY && !goingDown) {
+        if (newDy === -1 && !goingDown) {
             dx = 0;
             dy = -1;
         }
-        if (keyPressed === RIGHT_KEY && !goingLeft) {
+        if (newDx === 1 && !goingLeft) {
             dx = 1;
             dy = 0;
         }
-        if (keyPressed === DOWN_KEY && !goingUp) {
+        if (newDy === 1 && !goingUp) {
             dx = 0;
             dy = 1;
         }
     }
 
-    // Touch controls
-    function handleTouchStart(event) {
-        const touch = event.touches[0];
-        const canvasRect = snakeCanvas.getBoundingClientRect();
-        const touchX = touch.clientX - canvasRect.left;
-        const touchY = touch.clientY - canvasRect.top;
-
-        if (touchX < canvasRect.width / 2) {
-            if (touchY < canvasRect.height / 2) {
-                // Top left
-                if (dy === 0) {
-                    dx = -1;
-                    dy = 0;
-                }
-            } else {
-                // Bottom left
-                if (dy === 0) {
-                    dx = -1;
-                    dy = 0;
-                }
-            }
-        } else {
-            if (touchY < canvasRect.height / 2) {
-                // Top right
-                if (dy === 0) {
-                    dx = 1;
-                    dy = 0;
-                }
-            } else {
-                // Bottom right
-                if (dy === 0) {
-                    dx = 1;
-                    dy = 0;
-                }
-            }
-        }
-    }
-
-    // Add event listeners
-    document.addEventListener('keydown', changeDirection);
-    snakeCanvas.addEventListener('touchstart', handleTouchStart);
+    // Button event listeners
+    document.getElementById('left-btn').addEventListener('click', () => changeDirection(-1, 0));
+    document.getElementById('up-btn').addEventListener('click', () => changeDirection(0, -1));
+    document.getElementById('down-btn').addEventListener('click', () => changeDirection(0, 1));
+    document.getElementById('right-btn').addEventListener('click', () => changeDirection(1, 0));
 
     // Uno game variables and functions
     const colors = ['red', 'blue', 'green', 'yellow'];
