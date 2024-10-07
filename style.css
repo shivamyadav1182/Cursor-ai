@@ -1,66 +1,12 @@
-body {
-    font-family: Arial, sans-serif;
+.controls {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 20px;
-}
-
-#game-selection {
-    margin-bottom: 20px;
-}
-
-#game-choice {
-    font-size: 16px;
-    padding: 5px;
-}
-
-.game-container {
-    display: none;
-    background-color: white;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-#snake-board {
-    border: 2px solid #000;
-}
-
-#snake-score {
-    font-size: 24px;
+    justify-content: center;
     margin-top: 10px;
 }
 
-.hand {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-}
-
-.card {
-    width: 60px;
-    height: 90px;
-    border: 1px solid #000;
-    border-radius: 5px;
-    margin: 0 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+button {
     font-size: 24px;
-    cursor: pointer;
-}
-
-#discard-pile {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-}
-
-#draw-card {
-    font-size: 16px;
-    padding: 10px 20px;
+    padding: 10px;
+    margin: 5px;
     cursor: pointer;
 }
