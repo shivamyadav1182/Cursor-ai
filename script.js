@@ -10,7 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const gridSize = 20;
     const tileCount = 20;
-    snakeCanvas.width = snakeCanvas.height = gridSize * tileCount;
+    snakeCanvas.width = gridSize * tileCount;
+    snakeCanvas.height = gridSize * tileCount;
 
     let snake, food, dx, dy, score, snakeGameInterval;
 
@@ -108,6 +109,24 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('down-btn').addEventListener('click', () => changeDirection(0, 1));
     document.getElementById('right-btn').addEventListener('click', () => changeDirection(1, 0));
 
+    // Keyboard event listeners
+    document.addEventListener('keydown', function(event) {
+        switch (event.key) {
+            case 'ArrowLeft':
+                changeDirection(-1, 0);
+                break;
+            case 'ArrowUp':
+                changeDirection(0, -1);
+                break;
+            case 'ArrowDown':
+                changeDirection(0, 1);
+                break;
+            case 'ArrowRight':
+                changeDirection(1, 0);
+                break;
+        }
+    });
+
     // Uno game variables and functions
     const colors = ['red', 'blue', 'green', 'yellow'];
     const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -129,7 +148,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     renderUnoGame();
                     setTimeout(opponentTurn, 1000);
                 } else {
-                    alert("No more cards in the deck!");
+                    alert("No more cards in the deck! Reshuffling...");
+                    reshuffleDeck();
                 }
             };
         }
@@ -154,6 +174,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function dealCards(count) {
         return deck.splice(0, count);
+    }
+
+    function reshuffleDeck() {
+        // Reshuffle the discard pile into the deck
+        if (discardPile.length > 0) {
+            deck = deck.concat(discardPile.slice(0, discardPile.length - 1)); // Keep the top card
+            shuffleDeck(deck);
+            discardPile = [discardPile[discardPile.length - 1]]; // Reset discard pile with the top card
+            alert("Deck reshuffled!");
+        }
     }
 
     function renderUnoGame() {
